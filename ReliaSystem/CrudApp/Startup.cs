@@ -147,13 +147,7 @@ namespace CrudApp
             // Configurations
             services.Configure<AppSettings>(Configuration);
 
-
-            // Business Services
-            services.AddScoped<IEmailSender, EmailSender>();
-
-
             // Repositories
-            services.AddScoped<IUnitOfWork, HttpUnitOfWork>();
             services.AddScoped<IAccountManager, AccountManager>();
 
             // Auth Handlers
@@ -171,7 +165,6 @@ namespace CrudApp
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             Utilities.ConfigureLogger(loggerFactory);
-            EmailTemplates.Initialize(env);
 
             if (env.IsDevelopment())
             {
